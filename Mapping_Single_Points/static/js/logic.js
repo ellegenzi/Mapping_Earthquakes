@@ -7,7 +7,7 @@ console.log("working");
 // The setView() method sets the view of the map with a geographical center,
     // where the first coordinate is latitude (40.7) and the second is longitude (-94.5)
     // We set the zoom level of 4 on a scale of 0-18
-let map = L.map('mapid').setView([40.7, -94.5], 4);
+//let map = L.map('mapid').setView([40.7, -94.5], 4);
 
 // An alternative to the setView() method is to modify each attribute in the map object
 // using the curly braces notation
@@ -20,6 +20,20 @@ let map = L.map('mapid').setView([40.7, -94.5], 4);
     zoom: 4
   });
   */
+
+// Create the map object with a center and zoom level.
+let map = L.map('mapid').setView([34.0522, -118.2437], 14);
+
+// Add a marker to the map for Los Angeles, California.
+//let marker = L.marker([34.0522, -118.2437]).addTo(map);
+
+// Add a circle marker to the map for Los Angeles, California.
+L.circleMarker([34.0522, -118.2437], {
+    color: 'black',
+    fillColor: 'yellow',
+    fillOpacity: 0.15,
+    radius: 300
+}).addTo(map);
 
 // Add the tile layer from the leaflet documentation https://leafletjs.com/examples/quick-start/
 
@@ -43,7 +57,7 @@ let map = L.map('mapid').setView([40.7, -94.5], 4);
 */
 
 // We create the tile layer that will be the background of our map.
-let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     accessToken: API_KEY
