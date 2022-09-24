@@ -13,27 +13,45 @@ console.log("working");
 // using the curly braces notation
 
 // Create the map object with a center and zoom level.
-/*let map = L.map("mapid", {
+let map = L.map("mapid", {
     center: [
       40.7, -94.5
     ],
     zoom: 4
   });
-  */
+  
 
 // Create the map object with a center and zoom level.
-let map = L.map('mapid').setView([34.0522, -118.2437], 14);
+//let map = L.map('mapid').setView([34.0522, -118.2437], 14);
 
 // Add a marker to the map for Los Angeles, California.
 //let marker = L.marker([34.0522, -118.2437]).addTo(map);
 
 // Add a circle marker to the map for Los Angeles, California.
-L.circleMarker([34.0522, -118.2437], {
+/*L.circleMarker([34.0522, -118.2437], {
     color: 'black',
     fillColor: 'yellow',
     fillOpacity: 0.15,
     radius: 300
-}).addTo(map);
+}).addTo(map);*/
+
+// Get data from cities.js
+let cityData = cities;
+
+// Loop through the cities array and create one marker for each city.
+cityData.forEach(function(city) {
+    // Print each object in the array to the console
+    console.log(city)
+    // Add a circle marker with a radius equivalent to the city's population
+    L.circleMarker(city.location, {
+        color: 'orange',
+        weight: 4,
+        radius: city.population/200000
+    })
+    // Add city data using a popup (and add thousands separator)
+    .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population.toLocaleString() + "</h3>")
+    .addTo(map);
+   });
 
 // Add the tile layer from the leaflet documentation https://leafletjs.com/examples/quick-start/
 
